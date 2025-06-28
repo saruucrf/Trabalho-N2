@@ -186,6 +186,7 @@ void DrawGame(GameState *game) {
 }
 
 int main() {
+    SetConfigFlags(FLAG_FULLSCREEN_MODE);
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Tetris Fase 3 - Nao pode rotacionar");
     SetTargetFPS(60);
     
