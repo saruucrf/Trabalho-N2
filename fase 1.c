@@ -187,6 +187,7 @@ void DrawGame(GameState *game) {
 }
 
 int main() {
+    SetConfigFlags(FLAG_FULLSCREEN_MODE);
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Tetris Fase 1 - Classico");
     SetTargetFPS(60);
     
