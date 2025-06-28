@@ -97,9 +97,9 @@ void InitGame(GameState *game) {
             game->grid[y][x] = 0;
     game->score = 0;
     game->lines = 0;
-    game->level = 1;
+    game->level = 2;
     game->pieces = 0;
-    game->fallSpeed = 0.8f;
+    game->fallSpeed = 3.5f;
     game->fallTimer = 0;
     game->gameOver = false;
     game->gameStarted = false;
@@ -187,7 +187,7 @@ void DrawGame(GameState *game) {
 }
 
 int main() {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Tetris Fase 1 - Classico");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Tetris Fase 2 - RAPIDO!!!!!!");
     SetTargetFPS(60);
     
     GameState game;

@@ -97,9 +97,9 @@ void InitGame(GameState *game) {
             game->grid[y][x] = 0;
     game->score = 0;
     game->lines = 0;
-    game->level = 1;
+    game->level = 3;
     game->pieces = 0;
-    game->fallSpeed = 0.8f;
+    game->fallSpeed = 3.5f;
     game->fallTimer = 0;
     game->gameOver = false;
     game->gameStarted = false;
@@ -112,7 +112,6 @@ void UpdateGame(GameState *game) {
 
     if (IsKeyPressed(KEY_LEFT)) { game->current.x--; if (CheckCollision(game, &game->current)) game->current.x++; }
     if (IsKeyPressed(KEY_RIGHT)) { game->current.x++; if (CheckCollision(game, &game->current)) game->current.x--; }
-    if (IsKeyPressed(KEY_UP)) RotatePiece(game);
     
     game->fallTimer += (IsKeyDown(KEY_DOWN) ? 2 : 1) * game->fallSpeed * GetFrameTime();
     
@@ -126,7 +125,7 @@ void UpdateGame(GameState *game) {
             game->lines += linesCleared;
             game->score += linesCleared * linesCleared * 100 * game->level;
             game->pieces++;
-            game->level = 1 + game->lines / 10;
+            game->level = 3 + game->lines / 10;
             game->current = game->next;
             game->next = NewTetrimino(GetRandomValue(0, 6));
             if (CheckCollision(game, &game->current)) game->gameOver = true;
@@ -169,7 +168,7 @@ void DrawGame(GameState *game) {
     
     DrawText("CONTROLES:", GRID_WIDTH*BLOCK_SIZE+20, 320, 20, WHITE);
     DrawText("Setas: Mover", GRID_WIDTH*BLOCK_SIZE+20, 350, 18, WHITE);
-    DrawText("Seta Cima: Girar", GRID_WIDTH*BLOCK_SIZE+20, 380, 18, WHITE);
+    DrawText("Seta Cima: DESATIVADO!!", GRID_WIDTH*BLOCK_SIZE+20, 380, 18, RED);
     DrawText("Seta Baixo: Cair rapido", GRID_WIDTH*BLOCK_SIZE+20, 410, 18, WHITE);
     
     if (!game->gameStarted) {
@@ -187,7 +186,7 @@ void DrawGame(GameState *game) {
 }
 
 int main() {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Tetris Fase 1 - Classico");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Tetris Fase 3 - Nao pode rotacionar");
     SetTargetFPS(60);
     
     GameState game;

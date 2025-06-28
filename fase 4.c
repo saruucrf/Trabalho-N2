@@ -97,9 +97,9 @@ void InitGame(GameState *game) {
             game->grid[y][x] = 0;
     game->score = 0;
     game->lines = 0;
-    game->level = 1;
+    game->level = 4;
     game->pieces = 0;
-    game->fallSpeed = 0.8f;
+    game->fallSpeed = 3.5f;
     game->fallTimer = 0;
     game->gameOver = false;
     game->gameStarted = false;
@@ -110,11 +110,11 @@ void InitGame(GameState *game) {
 void UpdateGame(GameState *game) {
     if (game->gameOver || !game->gameStarted) return;
 
-    if (IsKeyPressed(KEY_LEFT)) { game->current.x--; if (CheckCollision(game, &game->current)) game->current.x++; }
-    if (IsKeyPressed(KEY_RIGHT)) { game->current.x++; if (CheckCollision(game, &game->current)) game->current.x--; }
-    if (IsKeyPressed(KEY_UP)) RotatePiece(game);
+    if (IsKeyPressed(KEY_RIGHT)) { game->current.x--; if (CheckCollision(game, &game->current)) game->current.x++; }
+    if (IsKeyPressed(KEY_LEFT)) { game->current.x++; if (CheckCollision(game, &game->current)) game->current.x--; }
+    if (IsKeyPressed(KEY_DOWN)) RotatePiece(game);
     
-    game->fallTimer += (IsKeyDown(KEY_DOWN) ? 2 : 1) * game->fallSpeed * GetFrameTime();
+    game->fallTimer += (IsKeyDown(KEY_UP) ? 2 : 1) * game->fallSpeed * GetFrameTime();
     
     if (game->fallTimer >= 1.0f) {
         game->fallTimer = 0;
@@ -154,23 +154,23 @@ void DrawGame(GameState *game) {
     // Painel de estatísticas
     DrawRectangle(GRID_WIDTH*BLOCK_SIZE, 0, 250, SCREEN_HEIGHT, DARKGRAY);
     
-    DrawText("ESTATISTICAS", GRID_WIDTH*BLOCK_SIZE+20, 20, 20, WHITE);
-    DrawText(TextFormat("Pontuacao: %d", game->score), GRID_WIDTH*BLOCK_SIZE+20, 60, 20, WHITE);
-    DrawText(TextFormat("Linhas: %d", game->lines), GRID_WIDTH*BLOCK_SIZE+20, 90, 20, WHITE);
-    DrawText(TextFormat("Nivel: %d", game->level), GRID_WIDTH*BLOCK_SIZE+20, 120, 20, WHITE);
-    DrawText(TextFormat("Pecas: %d", game->pieces), GRID_WIDTH*BLOCK_SIZE+20, 150, 20, WHITE);
+    DrawText("sacitsitatsE", GRID_WIDTH*BLOCK_SIZE+20, 20, 20, WHITE);
+    DrawText(TextFormat("oacautnoP: %d", game->score), GRID_WIDTH*BLOCK_SIZE+20, 60, 20, WHITE);
+    DrawText(TextFormat("sahniL: %d", game->lines), GRID_WIDTH*BLOCK_SIZE+20, 90, 20, WHITE);
+    DrawText(TextFormat("leviN: %d", game->level), GRID_WIDTH*BLOCK_SIZE+20, 120, 20, WHITE);
+    DrawText(TextFormat("saceP: %d", game->pieces), GRID_WIDTH*BLOCK_SIZE+20, 150, 20, WHITE);
     
-    DrawText("PROXIMA PECA:", GRID_WIDTH*BLOCK_SIZE+20, 200, 20, WHITE);
+    DrawText("ACEP AMIXORP:", GRID_WIDTH*BLOCK_SIZE+20, 200, 20, WHITE);
     for (int y = 0; y < 4; y++)
         for (int x = 0; x < 4; x++)
             if (game->next.shape[y][x])
                 DrawRectangle(GRID_WIDTH*BLOCK_SIZE+50+x*BLOCK_SIZE/2, 230+y*BLOCK_SIZE/2, 
                             BLOCK_SIZE/2, BLOCK_SIZE/2, tetriminoColors[game->next.type+1]);
     
-    DrawText("CONTROLES:", GRID_WIDTH*BLOCK_SIZE+20, 320, 20, WHITE);
-    DrawText("Setas: Mover", GRID_WIDTH*BLOCK_SIZE+20, 350, 18, WHITE);
-    DrawText("Seta Cima: Girar", GRID_WIDTH*BLOCK_SIZE+20, 380, 18, WHITE);
-    DrawText("Seta Baixo: Cair rapido", GRID_WIDTH*BLOCK_SIZE+20, 410, 18, WHITE);
+    DrawText("selortnoC:", GRID_WIDTH*BLOCK_SIZE+20, 320, 20, WHITE);
+    DrawText("ateS: revoM", GRID_WIDTH*BLOCK_SIZE+20, 350, 18, WHITE);
+    DrawText("amiC ateS: rariG", GRID_WIDTH*BLOCK_SIZE+20, 380, 18, WHITE);
+    DrawText("oxiaB ateS: odipaR riaC", GRID_WIDTH*BLOCK_SIZE+20, 410, 18, WHITE);
     
     if (!game->gameStarted) {
         DrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, (Color){0,0,0,200});
@@ -187,7 +187,7 @@ void DrawGame(GameState *game) {
 }
 
 int main() {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Tetris Fase 1 - Classico");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Tetris Fase 4 - INVERTIDO!!!");
     SetTargetFPS(60);
     
     GameState game;
